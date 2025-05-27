@@ -61,3 +61,4 @@ git push
 # Or do it all in one go
 
 git add . && git commit -m "your message" && git push
+# MacBook setup complete
