@@ -61,4 +61,9 @@ git push
 # Or do it all in one go
 
 git add . && git commit -m "your message" && git push
+
 # MacBook setup complete
+
+# Only run when you actually change configs
+
+cd ~/dotfiles && git pull && stow kitty
