@@ -1,2 +1,14 @@
 vim/.vim/undodir
 **/.DS_Store
+
+# Packer compiled file
+plugin/packer_compiled.lua
+
+# Neovim cache and state
+.netrwhist
+*.tmp
+*.swp
+*.swo
+
+# Plugin manager generated files
+lazy-lock.json
