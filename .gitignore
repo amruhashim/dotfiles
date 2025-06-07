@@ -12,3 +12,4 @@ plugin/packer_compiled.lua
 
 # Plugin manager generated files
 lazy-lock.json
+nvim/.config/nvim/plugin/packer_compiled.lua
