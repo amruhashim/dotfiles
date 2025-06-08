@@ -153,9 +153,57 @@ stow nvim
 
 ### Git (Fugitive)
 
-| Keymap       | Function      | Description            |
-| ------------ | ------------- | ---------------------- |
-| `<leader>gs` | `vim.cmd.Git` | Open Git status window |
+| Keymap       | Function      | Description                           |
+| ------------ | ------------- | ------------------------------------- |
+| `<leader>gs` | `vim.cmd.Git` | Open Git status window (vim-fugitive) |
+
+#### Git Status Window Usage
+
+When you press `<leader>gs`, vim-fugitive opens the Git status window where you can:
+
+**File Operations:**
+
+- `s` - Stage file under cursor
+- `u` - Unstage file under cursor
+- `U` - Unstage all files
+- `-` - Toggle stage/unstage for file under cursor
+- `X` - Discard changes in file under cursor
+
+**Navigation & Viewing:**
+
+- `Enter` - Open file under cursor
+- `o` - Open file in horizontal split
+- `gO` - Open file in vertical split
+- `=` - Show diff for file under cursor
+- `>` - Show diff in horizontal split
+- `<` - Show diff in vertical split
+
+**Commit Operations:**
+
+- `cc` - Create commit (opens commit message editor)
+- `ca` - Amend last commit
+- `ce` - Amend last commit without editing message
+- `cw` - Reword last commit message
+
+**Branch Operations:**
+
+- `cb` - Create and checkout new branch
+- `co` - Checkout existing branch/commit
+
+**Other Actions:**
+
+- `r` - Reload status window
+- `g?` - Show help with all available commands
+- `q` - Close status window
+
+**Example Workflow:**
+
+1. Press `<leader>gs` to open Git status
+2. Navigate to modified file with `j/k`
+3. Press `s` to stage the file
+4. Press `cc` to commit
+5. Type commit message and save (`:wq`)
+6. Press `q` to close status window
 
 ### Telescope Keymaps
 
