@@ -54,5 +54,8 @@ return require("packer").startup(function(use)
 			{"rafamadriz/friendly-snippets"},
 		}
 	})
-
 end)
+
+lsp.setup()
+
+
