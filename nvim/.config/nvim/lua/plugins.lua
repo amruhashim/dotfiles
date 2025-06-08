@@ -31,6 +31,6 @@ return require("packer").startup(function(use)
 	use("stevearc/conform.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("theprimeagen/harpoon")
-	use("mbbill/undotree")
-end)
+	use("mbbill/undotree") 
+	use("tpope/vim-fugitive")
 
