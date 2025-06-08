@@ -256,6 +256,88 @@ function  *.{js,ts} # Find "function" in JS/TS files
    - `<C-n>` - Jump to file #3
    - `<C-s>` - Jump to file #4
 
+## Neovim Window & Split Management
+
+### Creating Splits
+
+| Command            | Function                   | Description                            |
+| ------------------ | -------------------------- | -------------------------------------- |
+| `:split` or `:sp`  | Horizontal split           | Split current file horizontally        |
+| `:vsplit` or `:vs` | Vertical split             | Split current file vertically          |
+| `:split filename`  | Horizontal split with file | Split horizontally and open file       |
+| `:vsplit filename` | Vertical split with file   | Split vertically and open file         |
+| `:new`             | New horizontal split       | New horizontal split with empty buffer |
+| `:vnew`            | New vertical split         | New vertical split with empty buffer   |
+
+### Split Navigation
+
+| Command  | Action                    |
+| -------- | ------------------------- |
+| `<C-w>h` | Move to left window       |
+| `<C-w>l` | Move to right window      |
+| `<C-w>j` | Move to window below      |
+| `<C-w>k` | Move to window above      |
+| `<C-w>w` | Cycle through all windows |
+| `<C-w>W` | Cycle windows in reverse  |
+
+### Split Resizing
+
+| Command   | Action                        |
+| --------- | ----------------------------- |
+| `<C-w>=`  | Make all splits equal size    |
+| `<C-w>_`  | Maximize current split height |
+| `<C-w>\|` | Maximize current split width  |
+| `<C-w>+`  | Increase height               |
+| `<C-w>-`  | Decrease height               |
+| `<C-w>>`  | Increase width                |
+| `<C-w><`  | Decrease width                |
+
+### Split Management
+
+| Command  | Action                  |
+| -------- | ----------------------- |
+| `<C-w>q` | Close current split     |
+| `<C-w>o` | Close all other windows |
+| `<C-w>c` | Close current window    |
+
+#### Split Usage Examples
+
+**Edit two files side by side:**
+
+```bash
+:vs config.lua         # Split vertically and open config.lua
+<C-w>l                 # Move to right split
+:e another-file.js     # Open different file in right split
+<C-w>h                 # Move back to left split
+```
+
+**Compare files:**
+
+```bash
+:vs file1.js           # Open file1 in vertical split
+<C-w>l                 # Move to right split
+:e file2.js            # Open file2 in right split
+# Now you can see both files side by side
+```
+
+**Multiple horizontal views:**
+
+```bash
+:sp                    # Horizontal split with same file
+:sp logs.txt           # Another horizontal split with logs
+# Now you have 3 horizontal panes stacked
+```
+
+**Quick workflow:**
+
+```bash
+# Working on main file
+:vs                    # Quick vertical split
+<C-w>l                 # Move to new split
+<leader>pf             # Use telescope to open another file
+<C-w>h                 # Jump back to main file
+```
+
 ## Neovim Window & Navigation Controls
 
 ### Window Navigation
