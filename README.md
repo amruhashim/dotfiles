@@ -109,6 +109,21 @@ git push -u origin main
 | `<C-y>`     | Confirm completion  | Accept selected completion  |
 | `<C-Space>` | Trigger completion  | Manually trigger completion |
 
+**💡 How to Use LSP Suggestions:**
+
+1. Start typing (completion menu appears automatically)
+2. Use `<C-n>` and `<C-p>` to navigate through suggestions
+3. Press `<C-y>` to select and insert the highlighted item
+
+**Example workflow:**
+
+```
+Type: "conso"
+↓ (completion menu appears)
+Use <C-n> to highlight "console.log"
+Press <C-y> to select it
+```
+
 ### 🎯 Core Keymaps
 
 | Keymap             | Function     | Description                |
