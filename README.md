@@ -43,6 +43,120 @@ stow nvim
 
 ## Neovim Configuration
 
+### LSP Keymaps
+
+| Keymap           | Function                       | Description                  |
+| ---------------- | ------------------------------ | ---------------------------- |
+| `gd`             | `vim.lsp.buf.definition`       | Go to definition             |
+| `K`              | `vim.lsp.buf.hover`            | Show documentation hover     |
+| `<leader>vws`    | `vim.lsp.buf.workspace_symbol` | Search workspace symbols     |
+| `<leader>vd`     | `vim.diagnostic.open_float`    | Show diagnostic details      |
+| `[d`             | `vim.diagnostic.goto_next`     | Go to next diagnostic        |
+| `]d`             | `vim.diagnostic.goto_prev`     | Go to previous diagnostic    |
+| `<leader>vca`    | `vim.lsp.buf.code_action`      | Show code actions            |
+| `<leader>vrr`    | `vim.lsp.buf.references`       | Find references              |
+| `<leader>vrn`    | `vim.lsp.buf.rename`           | Rename symbol                |
+| `<C-h>` (insert) | `vim.lsp.buf.signature_help`   | Show function signature help |
+
+### LSP Completion
+
+| Keymap      | Function            | Description                 |
+| ----------- | ------------------- | --------------------------- |
+| `<C-p>`     | Previous completion | Navigate up in completion   |
+| `<C-n>`     | Next completion     | Navigate down in completion |
+| `<C-y>`     | Confirm completion  | Accept selected completion  |
+| `<C-Space>` | Trigger completion  | Manually trigger completion |
+
+### Core Keymaps
+
+| Keymap             | Function     | Description                |
+| ------------------ | ------------ | -------------------------- |
+| `<leader>`         | Space        | Leader key set to spacebar |
+| `<leader>pv`       | `vim.cmd.Ex` | Open file explorer (netrw) |
+| `<leader><leader>` | Source file  | Reload current Lua file    |
+
+### Movement & Navigation
+
+| Keymap  | Function                  | Description                           |
+| ------- | ------------------------- | ------------------------------------- |
+| `J`     | Join lines (cursor stays) | Join line below, keep cursor position |
+| `<C-d>` | Half page down + center   | Scroll down and center cursor         |
+| `<C-u>` | Half page up + center     | Scroll up and center cursor           |
+| `n`     | Next search + center      | Next search result, center screen     |
+| `N`     | Previous search + center  | Previous search result, center screen |
+| `=ap`   | Format paragraph          | Auto-format current paragraph         |
+
+### Visual Mode Line Movement
+
+| Keymap | Function       | Description              |
+| ------ | -------------- | ------------------------ |
+| `J`    | Move line down | Move selected lines down |
+| `K`    | Move line up   | Move selected lines up   |
+
+### Copy/Paste/Delete (System Clipboard)
+
+| Keymap      | Mode          | Function            | Description                         |
+| ----------- | ------------- | ------------------- | ----------------------------------- |
+| `<leader>p` | Visual        | Paste without yank  | Paste over selection, keep register |
+| `<leader>y` | Normal/Visual | Yank to system      | Copy to system clipboard            |
+| `<leader>Y` | Normal        | Yank line to system | Copy whole line to system clipboard |
+| `<leader>d` | Normal/Visual | Delete to void      | Delete without affecting registers  |
+
+### Error Handling & Go Snippets
+
+| Keymap       | Function          | Description                            |
+| ------------ | ----------------- | -------------------------------------- |
+| `<leader>ee` | Basic error check | `if err != nil { return err }`         |
+| `<leader>ea` | Assert no error   | `assert.NoError(err, "")`              |
+| `<leader>ef` | Fatal error log   | `log.Fatalf("error: %s\n", err)`       |
+| `<leader>el` | Logger error      | `.logger.Error("error", "error", err)` |
+
+### Quickfix & Location List
+
+| Keymap      | Function          | Description                          |
+| ----------- | ----------------- | ------------------------------------ |
+| `<C-k>`     | Next quickfix     | Go to next item in quickfix          |
+| `<C-j>`     | Previous quickfix | Go to previous item in quickfix      |
+| `<leader>k` | Next location     | Go to next item in location list     |
+| `<leader>j` | Previous location | Go to previous item in location list |
+
+### Utility & Productivity
+
+| Keymap        | Function             | Description                        |
+| ------------- | -------------------- | ---------------------------------- |
+| `<leader>s`   | Search and replace   | Replace word under cursor globally |
+| `<leader>x`   | Make executable      | Add execute permissions to file    |
+| `<leader>f`   | Format with conform  | Format current buffer              |
+| `<leader>zig` | Restart LSP          | Restart language server            |
+| `<C-c>`       | Escape (insert mode) | Alternative to Escape key          |
+| `Q`           | Disabled             | Disable Ex mode                    |
+
+### Testing & Development
+
+| Keymap       | Function           | Description                      |
+| ------------ | ------------------ | -------------------------------- |
+| `<leader>tf` | Test file          | Run Plenary test on current file |
+| `<leader>ca` | Cellular automaton | Fun animation (make it rain)     |
+
+### Tmux Integration
+
+| Keymap  | Function         | Description              |
+| ------- | ---------------- | ------------------------ |
+| `<C-f>` | Tmux sessionizer | Open tmux session picker |
+
+### Vim-with-me (Collaboration)
+
+| Keymap         | Function          | Description                 |
+| -------------- | ----------------- | --------------------------- |
+| `<leader>vwm`  | Start vim-with-me | Start collaboration session |
+| `<leader>svwm` | Stop vim-with-me  | Stop collaboration session  |
+
+### Git (Fugitive)
+
+| Keymap       | Function      | Description            |
+| ------------ | ------------- | ---------------------- |
+| `<leader>gs` | `vim.cmd.Git` | Open Git status window |
+
 ### Telescope Keymaps
 
 | Keymap        | Function      | Description                         |
