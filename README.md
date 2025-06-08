@@ -2,14 +2,11 @@
 
 Personal dotfiles managed with GNU Stow for consistent development environment across machines.
 
-## Quick Setup
+## 🚀 Quick Setup
 
 ```bash
-# Install GNU Stow
-brew install stow
-
-# Install fd for faster directory searches
-brew install fd
+# Install dependencies
+brew install stow fd gh
 
 # Clone and setup
 git clone <your-repo> ~/dotfiles
@@ -20,7 +17,7 @@ stow kitty
 stow nvim
 ```
 
-## Package Management
+## 📦 Package Management
 
 | Command                       | Description                            |
 | ----------------------------- | -------------------------------------- |
@@ -29,7 +26,7 @@ stow nvim
 | `stow -nv package_name`       | Preview what would be stowed (dry run) |
 | `stow -D kitty && stow kitty` | Re-stow after adding new files         |
 
-## Git Workflow
+## 🔄 Git Workflow
 
 | Command                                            | Description                   |
 | -------------------------------------------------- | ----------------------------- |
@@ -41,9 +38,54 @@ stow nvim
 | `git push`                                         | Push to remote                |
 | `git add . && git commit -m "message" && git push` | Do it all in one go           |
 
-## Neovim Configuration
+### Creating GitHub Repository from Neovim
 
-### LSP Keymaps
+**Method 1: Using Built-in Terminal**
+
+```vim
+:terminal
+```
+
+Then in terminal:
+
+```bash
+# Initialize and setup
+git init
+git add .
+git commit -m "Initial commit"
+
+# Create GitHub repo (requires GitHub CLI)
+gh repo create your-repo-name --public --source=. --remote=origin --push
+
+# Or manually add remote
+git remote add origin https://github.com/yourusername/your-repo-name.git
+git branch -M main
+git push -u origin main
+```
+
+**Method 2: Using vim-fugitive Commands**
+
+```vim
+:!git init
+:!git add .
+:!git commit -m "Initial commit"
+:!git remote add origin https://github.com/yourusername/repo-name.git
+:!git push -u origin main
+```
+
+**Method 3: Using `<leader>gs` Workflow**
+
+1. Initialize repo: `:!git init`
+2. Press `<leader>gs` to open Git status
+3. Stage files with `s`
+4. Press `cc` to commit
+5. Add remote and push: `:!git remote add origin <url> && git push -u origin main`
+
+---
+
+## ⚙️ Neovim Configuration
+
+### 🔧 LSP Keymaps
 
 | Keymap           | Function                       | Description                  |
 | ---------------- | ------------------------------ | ---------------------------- |
@@ -58,7 +100,7 @@ stow nvim
 | `<leader>vrn`    | `vim.lsp.buf.rename`           | Rename symbol                |
 | `<C-h>` (insert) | `vim.lsp.buf.signature_help`   | Show function signature help |
 
-### LSP Completion
+### 📝 LSP Completion
 
 | Keymap      | Function            | Description                 |
 | ----------- | ------------------- | --------------------------- |
@@ -67,7 +109,7 @@ stow nvim
 | `<C-y>`     | Confirm completion  | Accept selected completion  |
 | `<C-Space>` | Trigger completion  | Manually trigger completion |
 
-### Core Keymaps
+### 🎯 Core Keymaps
 
 | Keymap             | Function     | Description                |
 | ------------------ | ------------ | -------------------------- |
@@ -75,7 +117,7 @@ stow nvim
 | `<leader>pv`       | `vim.cmd.Ex` | Open file explorer (netrw) |
 | `<leader><leader>` | Source file  | Reload current Lua file    |
 
-### Movement & Navigation
+### 🧭 Movement & Navigation
 
 | Keymap  | Function                  | Description                           |
 | ------- | ------------------------- | ------------------------------------- |
@@ -86,14 +128,14 @@ stow nvim
 | `N`     | Previous search + center  | Previous search result, center screen |
 | `=ap`   | Format paragraph          | Auto-format current paragraph         |
 
-### Visual Mode Line Movement
+### ↕️ Visual Mode Line Movement
 
 | Keymap | Function       | Description              |
 | ------ | -------------- | ------------------------ |
 | `J`    | Move line down | Move selected lines down |
 | `K`    | Move line up   | Move selected lines up   |
 
-### Copy/Paste/Delete (System Clipboard)
+### 📋 Copy/Paste/Delete (System Clipboard)
 
 | Keymap      | Mode          | Function            | Description                         |
 | ----------- | ------------- | ------------------- | ----------------------------------- |
@@ -102,7 +144,7 @@ stow nvim
 | `<leader>Y` | Normal        | Yank line to system | Copy whole line to system clipboard |
 | `<leader>d` | Normal/Visual | Delete to void      | Delete without affecting registers  |
 
-### Error Handling & Go Snippets
+### 🚨 Error Handling & Go Snippets
 
 | Keymap       | Function          | Description                            |
 | ------------ | ----------------- | -------------------------------------- |
@@ -111,7 +153,7 @@ stow nvim
 | `<leader>ef` | Fatal error log   | `log.Fatalf("error: %s\n", err)`       |
 | `<leader>el` | Logger error      | `.logger.Error("error", "error", err)` |
 
-### Quickfix & Location List
+### 🔧 Quickfix & Location List
 
 | Keymap      | Function          | Description                          |
 | ----------- | ----------------- | ------------------------------------ |
@@ -120,7 +162,7 @@ stow nvim
 | `<leader>k` | Next location     | Go to next item in location list     |
 | `<leader>j` | Previous location | Go to previous item in location list |
 
-### Utility & Productivity
+### 🛠️ Utility & Productivity
 
 | Keymap        | Function             | Description                        |
 | ------------- | -------------------- | ---------------------------------- |
@@ -131,37 +173,37 @@ stow nvim
 | `<C-c>`       | Escape (insert mode) | Alternative to Escape key          |
 | `Q`           | Disabled             | Disable Ex mode                    |
 
-### Testing & Development
+### 🧪 Testing & Development
 
 | Keymap       | Function           | Description                      |
 | ------------ | ------------------ | -------------------------------- |
 | `<leader>tf` | Test file          | Run Plenary test on current file |
 | `<leader>ca` | Cellular automaton | Fun animation (make it rain)     |
 
-### Tmux Integration
+### 🖥️ Tmux Integration
 
 | Keymap  | Function         | Description              |
 | ------- | ---------------- | ------------------------ |
 | `<C-f>` | Tmux sessionizer | Open tmux session picker |
 
-### Vim-with-me (Collaboration)
+### 👥 Vim-with-me (Collaboration)
 
 | Keymap         | Function          | Description                 |
 | -------------- | ----------------- | --------------------------- |
 | `<leader>vwm`  | Start vim-with-me | Start collaboration session |
 | `<leader>svwm` | Stop vim-with-me  | Stop collaboration session  |
 
-### Git (Fugitive)
+### 🌟 Git (Fugitive)
 
 | Keymap       | Function      | Description                           |
 | ------------ | ------------- | ------------------------------------- |
 | `<leader>gs` | `vim.cmd.Git` | Open Git status window (vim-fugitive) |
 
-#### Git Status Window Usage
+#### Git Status Window Operations
 
-When you press `<leader>gs`, vim-fugitive opens the Git status window where you can:
+When you press `<leader>gs`, vim-fugitive opens a powerful Git status interface:
 
-**File Operations:**
+**📁 File Operations**
 
 - `s` - Stage file under cursor
 - `u` - Unstage file under cursor
@@ -169,7 +211,7 @@ When you press `<leader>gs`, vim-fugitive opens the Git status window where you 
 - `-` - Toggle stage/unstage for file under cursor
 - `X` - Discard changes in file under cursor
 
-**Navigation & Viewing:**
+**👀 Navigation & Viewing**
 
 - `Enter` - Open file under cursor
 - `o` - Open file in horizontal split
@@ -178,25 +220,25 @@ When you press `<leader>gs`, vim-fugitive opens the Git status window where you 
 - `>` - Show diff in horizontal split
 - `<` - Show diff in vertical split
 
-**Commit Operations:**
+**💾 Commit Operations**
 
 - `cc` - Create commit (opens commit message editor)
 - `ca` - Amend last commit
 - `ce` - Amend last commit without editing message
 - `cw` - Reword last commit message
 
-**Branch Operations:**
+**🌿 Branch Operations**
 
 - `cb` - Create and checkout new branch
 - `co` - Checkout existing branch/commit
 
-**Other Actions:**
+**⚡ Other Actions**
 
 - `r` - Reload status window
 - `g?` - Show help with all available commands
 - `q` - Close status window
 
-**Example Workflow:**
+**📋 Example Workflow**
 
 1. Press `<leader>gs` to open Git status
 2. Navigate to modified file with `j/k`
@@ -205,7 +247,7 @@ When you press `<leader>gs`, vim-fugitive opens the Git status window where you 
 5. Type commit message and save (`:wq`)
 6. Press `q` to close status window
 
-### Telescope Keymaps
+### 🔍 Telescope Keymaps
 
 | Keymap        | Function      | Description                         |
 | ------------- | ------------- | ----------------------------------- |
@@ -218,63 +260,42 @@ When you press `<leader>gs`, vim-fugitive opens the Git status window where you 
 | `<leader>ep`  | Custom        | Search plugin files                 |
 | `<leader>fg`  | Custom        | Live grep with file filtering       |
 
-### Telescope Examples
+**💡 Telescope Usage Examples**
 
-```lua
--- Basic file search
-<leader>pf
--- Type: config.lua
+```bash
+# File searching
+<leader>pf    # Type: config.lua
+<leader>ph    # Type: .env (hidden files)
+<leader>pd    # Type: src (directories only)
+<leader>pD    # Type: .git (hidden directories)
+<leader>C-p   # Type: telescope (git files only)
 
--- Find hidden files (.env, .gitignore, etc.)
-<leader>ph
--- Type: .env
-
--- Find directories only
-<leader>pd
--- Type: src
-
--- Find hidden directories (.git, .config, etc.)
-<leader>pD
--- Type: .git
-
--- Git files only
-<leader>C-p
--- Type: telescope
-
--- Search for specific text
-<leader>ps
--- Input: "function"
-
--- Search plugin source code
-<leader>ep
--- Type: telescope.builtin
-
--- Multi-grep with file filtering
-<leader>fg
--- Type: config  *.lua
--- Type: function  *.tsx
--- Type: TODO  **/src/**
+# Content searching
+<leader>ps    # Input: "function"
+<leader>ep    # Type: telescope.builtin (plugin files)
+<leader>fg    # Advanced multi-grep (see below)
 ```
 
-### Multi-Grep Usage
+**🔎 Multi-Grep Advanced Usage**
 
-The custom multi-grep picker (`<leader>fg`) supports advanced filtering:
+The custom multi-grep picker (`<leader>fg`) supports powerful filtering:
 
-- **Basic search**: `function` - finds all occurrences
-- **File filtering**: `search_term  *.extension` - filter by file type
-- **Directory filtering**: `search_term  **/directory/**` - filter by path
-- **Quick fix**: Press `<C-q>` to send results to quickfix list
+```bash
+# Basic patterns
+function                    # Find all occurrences
+search_term  *.extension   # Filter by file type
+search_term  **/dir/**     # Filter by directory path
 
-#### Examples:
-
+# Real examples
+app  *.tsx                 # Find "app" in TypeScript React files
+config  *.lua              # Find "config" in Lua files
+TODO  **/src/**            # Find "TODO" in src directories
+function  *.{js,ts}        # Find "function" in JS/TS files
 ```
-app  *.tsx          # Find "app" in TypeScript React files
-config  *.lua       # Find "config" in Lua files
-TODO  **/src/**     # Find "TODO" in src directories
-function  *.{js,ts} # Find "function" in JS/TS files
-```
 
-### Harpoon Navigation
+**Pro tip:** Press `<C-q>` to send results to quickfix list for easy navigation.
+
+### 🎯 Harpoon Navigation
 
 | Keymap      | Function               | Description                  |
 | ----------- | ---------------------- | ---------------------------- |
@@ -285,28 +306,30 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `<C-n>`     | `ui.nav_file(3)`       | Navigate to harpooned file 3 |
 | `<C-s>`     | `ui.nav_file(4)`       | Navigate to harpooned file 4 |
 
-#### Harpoon Workflow:
+**🎮 Harpoon Workflow**
 
-1. **Add files to Harpoon**
+1. **📌 Bookmark Important Files**
 
-   - Open a file you want to bookmark
+   - Open a file you frequently use
    - Press `<leader>a` (space + a) to add it to harpoon
-   - Repeat for other important files (up to 4 with your config)
+   - Repeat for up to 4 essential files
 
-2. **View your harpooned files**
+2. **📋 View Your Bookmarks**
 
-   - Press `<C-e>` (Ctrl + e) to open the harpoon quick menu
-   - You'll see a list of your bookmarked files
+   - Press `<C-e>` (Ctrl + e) to see your harpooned files
+   - Visual menu shows all bookmarked files
 
-3. **Navigate between files instantly**
-   - `<C-h>` - Jump to file #1
-   - `<C-t>` - Jump to file #2
-   - `<C-n>` - Jump to file #3
-   - `<C-s>` - Jump to file #4
+3. **⚡ Instant Navigation**
+   - `<C-h>` → Jump to file #1
+   - `<C-t>` → Jump to file #2
+   - `<C-n>` → Jump to file #3
+   - `<C-s>` → Jump to file #4
 
-## Neovim Window & Split Management
+---
 
-### Creating Splits
+## 🪟 Window & Split Management
+
+### ➕ Creating Splits
 
 | Command            | Function                   | Description                            |
 | ------------------ | -------------------------- | -------------------------------------- |
@@ -317,7 +340,7 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `:new`             | New horizontal split       | New horizontal split with empty buffer |
 | `:vnew`            | New vertical split         | New vertical split with empty buffer   |
 
-### Split Navigation
+### 🧭 Split Navigation
 
 | Command  | Action                    |
 | -------- | ------------------------- |
@@ -328,7 +351,7 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `<C-w>w` | Cycle through all windows |
 | `<C-w>W` | Cycle windows in reverse  |
 
-### Split Resizing
+### 📏 Split Resizing
 
 | Command   | Action                        |
 | --------- | ----------------------------- |
@@ -340,7 +363,7 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `<C-w>>`  | Increase width                |
 | `<C-w><`  | Decrease width                |
 
-### Split Management
+### 🗂️ Split Management
 
 | Command  | Action                  |
 | -------- | ----------------------- |
@@ -348,47 +371,33 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `<C-w>o` | Close all other windows |
 | `<C-w>c` | Close current window    |
 
-#### Split Usage Examples
-
-**Edit two files side by side:**
+**💼 Split Usage Examples**
 
 ```bash
-:vs config.lua         # Split vertically and open config.lua
+# Side-by-side editing
+:vs config.lua         # Split vertically, open config.lua
 <C-w>l                 # Move to right split
 :e another-file.js     # Open different file in right split
 <C-w>h                 # Move back to left split
-```
 
-**Compare files:**
-
-```bash
+# File comparison
 :vs file1.js           # Open file1 in vertical split
 <C-w>l                 # Move to right split
-:e file2.js            # Open file2 in right split
-# Now you can see both files side by side
-```
+:e file2.js            # Open file2 for comparison
 
-**Multiple horizontal views:**
-
-```bash
+# Multi-pane setup
 :sp                    # Horizontal split with same file
 :sp logs.txt           # Another horizontal split with logs
-# Now you have 3 horizontal panes stacked
-```
+# Result: 3 horizontal panes stacked
 
-**Quick workflow:**
-
-```bash
-# Working on main file
+# Quick workflow
 :vs                    # Quick vertical split
 <C-w>l                 # Move to new split
 <leader>pf             # Use telescope to open another file
 <C-w>h                 # Jump back to main file
 ```
 
-## Neovim Window & Navigation Controls
-
-### Window Navigation
+### 🎛️ Window & Navigation Controls
 
 | Command  | Action                    |
 | -------- | ------------------------- |
@@ -400,7 +409,7 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `<C-w>W` | Cycle windows in reverse  |
 | `<C-w>o` | Close all other windows   |
 
-### Plugin-Specific Controls
+### 🔌 Plugin-Specific Controls
 
 | Plugin   | Keymap            | Function      | Description                 |
 | -------- | ----------------- | ------------- | --------------------------- |
@@ -410,7 +419,7 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | UndoTree | `j/k`             | Navigate      | Move through undo history   |
 | UndoTree | `Enter`           | Preview/Apply | Preview or apply undo state |
 
-### General Neovim Controls
+### 📱 General Neovim Controls
 
 | Keymap | Function       | Description              |
 | ------ | -------------- | ------------------------ |
@@ -420,17 +429,29 @@ function  *.{js,ts} # Find "function" in JS/TS files
 | `:w`   | Write          | Save current file        |
 | `:wq`  | Write and quit | Save and close           |
 
-## Daily Sync
+---
+
+## 🔄 Daily Workflow
+
+### 📥 Sync Configurations
 
 ```bash
 # Update configs from remote and re-stow
 cd ~/dotfiles && git pull && stow kitty && stow nvim
 ```
 
-## Quick Access
+### ⚡ Quick Access
 
 ```bash
 # Edit dotfiles with telescope
 cd ~/dotfiles && nvim .
 # Then use <leader>ph to find hidden files like .gitignore
 ```
+
+### 🎯 Pro Tips
+
+- Use `<leader>gs` for all Git operations within Neovim
+- Leverage Harpoon for quick file switching in large projects
+- Combine Telescope with multi-grep for powerful code searching
+- Use splits for side-by-side file comparison and editing
+- Take advantage of LSP features for intelligent code navigation
