@@ -2,7 +2,6 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
-
 	-- Telescope with dependencies
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -12,16 +11,13 @@ return require("packer").startup(function(use)
 			{ "nvim-tree/nvim-web-devicons" }, -- File icons
 		},
 	})
-
 	-- Telescope FZF native for better performance
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
 	})
-
 	-- File icons (can be used by other plugins too)
 	use("nvim-tree/nvim-web-devicons")
-
 	use("rebelot/kanagawa.nvim")
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -55,7 +51,3 @@ return require("packer").startup(function(use)
 		}
 	})
 end)
-
-lsp.setup()
-
-
