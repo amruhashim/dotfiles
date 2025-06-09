@@ -102,4 +102,42 @@ require("lazy").setup({
             require('Comment').setup()
         end
     },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        config = function()
+            require("noice").setup({
+                cmdline = {
+                    enabled = true,
+                    view = "cmdline_popup", -- floating command line
+                },
+                messages = {
+                    enabled = true,
+                },
+                popupmenu = {
+                    enabled = true,
+                },
+                --  popup appearance
+                views = {
+                    cmdline_popup = {
+                        border = {
+                            style = "rounded", -- or "single", "double", etc.
+                        },
+                        position = {
+                            row = "50%", -- center vertically
+                            col = "50%", -- center horizontally
+                        },
+                        size = {
+                            width = 60,
+                            height = "auto",
+                        },
+                    },
+                },
+            })
+        end,
+    },
 })
