@@ -14,7 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     end
 end
 vim.opt.rtp:prepend(lazypath)
-
 -- Setup lazy.nvim
 require("lazy").setup({
     -- Telescope with dependencies
@@ -30,10 +29,8 @@ require("lazy").setup({
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
     },
-
     "nvim-tree/nvim-web-devicons",
     "rebelot/kanagawa.nvim",
-
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -44,7 +41,6 @@ require("lazy").setup({
     "theprimeagen/harpoon",
     "mbbill/undotree",
     "tpope/vim-fugitive",
-
     {
         "VonHeikemen/lsp-zero.nvim",
         dependencies = {
@@ -61,18 +57,15 @@ require("lazy").setup({
             "rafamadriz/friendly-snippets",
         }
     },
-
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" }
     },
-
     {
         "akinsho/bufferline.nvim",
         version = "*",
         dependencies = "nvim-tree/nvim-web-devicons"
     },
-
     {
         "nvzone/typr",
         dependencies = "nvzone/volt",
@@ -81,9 +74,7 @@ require("lazy").setup({
         end,
         cmd = { "Typr", "TyprStats" }
     },
-
     "ggandor/leap.nvim",
-
     {
         "stevearc/oil.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
@@ -95,7 +86,6 @@ require("lazy").setup({
             })
         end
     },
-
     {
         "numToStr/Comment.nvim",
         config = function()
@@ -111,29 +101,15 @@ require("lazy").setup({
         },
         config = function()
             require("noice").setup({
-                cmdline = {
-                    enabled = true,
-                    view = "cmdline_popup", -- floating command line
-                },
-                messages = {
-                    enabled = true,
-                },
-                popupmenu = {
-                    enabled = true,
-                },
-                --  popup appearance
                 views = {
                     cmdline_popup = {
                         border = {
-                            style = "rounded", -- or "single", "double", etc.
+                            style = "double",
+                            padding = { 1, 1 },
                         },
-                        position = {
-                            row = "50%", -- center vertically
-                            col = "50%", -- center horizontally
-                        },
-                        size = {
-                            width = 60,
-                            height = "auto",
+                        filter_options = {},
+                        win_options = {
+                            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
                         },
                     },
                 },

@@ -1,7 +1,7 @@
 local status_ok, kanagawa = pcall(require, "kanagawa")
 if not status_ok then
-  vim.notify("colorscheme kanagawa not found!")
-  return
+    vim.notify("colorscheme kanagawa not found!")
+    return
 end
 
 kanagawa.setup({
@@ -20,7 +20,7 @@ kanagawa.setup({
         theme = {
             all = {
                 ui = {
-                    bg_gutter = "none"  -- Remove gutter background for cleaner look
+                    bg_gutter = "none" -- Remove gutter background for cleaner look
                 }
             }
         }
@@ -32,7 +32,7 @@ kanagawa.setup({
             NormalFloat = { bg = "none" },
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
-            
+
             -- Clean Telescope (if you use it)
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopePromptNormal = { bg = theme.ui.bg_p1 },
@@ -49,6 +49,6 @@ kanagawa.setup({
 local colorscheme = "kanagawa"
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
-  return
+    vim.notify("colorscheme " .. colorscheme .. " not found!")
+    return
 end
