@@ -67,4 +67,22 @@ return require("packer").startup(function(use)
         end,
         cmd = { 'Typr', 'TyprStats' }
     }
+    use('ggandor/leap.nvim')
+    use({
+        'stevearc/oil.nvim',
+        requires = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require('oil').setup({
+                view_options = {
+                    show_hidden = true,
+                }
+            })
+        end
+    })
+    use({
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    })
 end)
