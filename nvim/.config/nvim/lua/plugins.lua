@@ -59,4 +59,12 @@ return require("packer").startup(function(use)
         tag = "*",
         requires = 'nvim-tree/nvim-web-devicons'
     })
+    use {
+        'nvzone/typr',
+        requires = 'nvzone/volt',
+        config = function()
+            require('typr').setup({})
+        end,
+        cmd = { 'Typr', 'TyprStats' }
+    }
 end)

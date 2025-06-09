@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -189,6 +194,15 @@ _G.packer_plugins = {
     path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  typr = {
+    commands = { "Typr", "TyprStats" },
+    config = { "\27LJ\2\n6\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ttypr\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/opt/typr",
+    url = "https://github.com/nvzone/typr"
+  },
   undotree = {
     loaded = true,
     path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/undotree",
@@ -198,10 +212,34 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  volt = {
+    loaded = true,
+    path = "/Users/amruhashim/.local/share/nvim/site/pack/packer/start/volt",
+    url = "https://github.com/nvzone/volt"
   }
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Typr', function(cmdargs)
+          require('packer.load')({'typr'}, { cmd = 'Typr', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'typr'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Typr ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'TyprStats', function(cmdargs)
+          require('packer.load')({'typr'}, { cmd = 'TyprStats', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'typr'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('TyprStats ', 'cmdline')
+      end})
+time([[Defining lazy-load commands]], false)
+
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
