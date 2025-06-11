@@ -1,10 +1,13 @@
 local status_ok, alpha = pcall(require, "alpha")
 if not status_ok then
+	vim.notify("Alpha-nvim not found!", vim.log.levels.ERROR)
 	return
 end
-
-local dashboard = require("alpha.themes.dashboard")
-
+local dashboard_ok, dashboard = pcall(require, "alpha.themes.dashboard")
+if not dashboard_ok then
+	vim.notify("Alpha dashboard theme not found!", vim.log.levels.ERROR)
+	return
+end
 -- Set header with Assassin's Creed logo and welcome message
 dashboard.section.header.val = {
 	"                                                     ",
@@ -28,23 +31,22 @@ dashboard.section.header.val = {
 	"                    ⠀⠀⠀⠀⠈⠒⢤⣀⠀⠀⠀⠁⠀⠀⣠⣄⠀⠀⠀⠀⠀⠀⣀⡤⠒⠁⠀⠀⠀⠀",
 	"                    ⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠷⠶⢶⣿⣿⣿⣿⡷⠶⠾⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀",
 	"                                                     ",
-	"        ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗",
-	"        ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝",
-	"        ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ",
-	"        ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ",
-	"        ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗",
-	"         ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝",
+	"    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗",
+	"    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝",
+	"    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ",
+	"    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ",
+	"    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗",
+	"     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝",
 	"                                                     ",
-	"           ███████ ██ ██████      █████ ██████ ███   ██  ██████ ",
-	"           ██      ██ ██   ██    ██   █ ██   █ ████  ██ ██    █ ",
-	"           ███████ ██ ██████     ███████ ██████ ██ ██ ██ ██    █ ",
-	"                ██ ██ ██   ██    ██   █ ██   █ ██  ████ ██    █ ",
-	"           ███████ ██ ██   ██    ██   █ ██   █ ██   ███  ██████ ",
+	"       ███████ ██ ██████       █████  ██████  ███   ██  ██████ ",
+	"       ██      ██ ██   ██     ██   ██ ██   ██ ████  ██ ██    ██",
+	"       ███████ ██ ██████      ███████ ██████  ██ ██ ██ ██    ██",
+	"            ██ ██ ██   ██     ██   ██ ██   ██ ██  ████ ██    ██",
+	"       ███████ ██ ██   ██     ██   ██ ██   ██ ██   ███  ██████ ",
 	"                                                     ",
-	"              Nothing is true, everything is permitted  ",
+	"               Nothing is true, everything is permitted  ",
 	"                                                     ",
 }
-
 -- Set menu
 dashboard.section.buttons.val = {
 	dashboard.button("e", "  > New Mission", "<cmd>ene<CR>"),
@@ -55,7 +57,6 @@ dashboard.section.buttons.val = {
 	dashboard.button("c", "  > Brotherhood Config", "<cmd>edit ~/.config/nvim/init.lua<CR>"),
 	dashboard.button("q", "  > Leave Animus", "<cmd>qa<CR>"),
 }
-
 -- Set footer
 local function footer()
 	local total_plugins = require("lazy").stats().count
@@ -64,15 +65,11 @@ local function footer()
 	local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
 	return " " .. datetime .. "   " .. total_plugins .. " tools in arsenal" .. nvim_version_info .. " "
 end
-
 dashboard.section.footer.val = footer()
-
 -- Disable folding on alpha buffer
 dashboard.config.opts.noautocmd = true
-
 -- Setup alpha
 alpha.setup(dashboard.opts)
-
 -- Disable statusline in dashboard
 vim.cmd([[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
