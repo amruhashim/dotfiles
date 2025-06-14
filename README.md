@@ -283,7 +283,12 @@ When you press `<leader>gs`, vim-fugitive opens a powerful Git status interface:
 <leader>ph    # Type: .env (hidden files)
 <leader>pd    # Type: src (directories only)
 <leader>pD    # Type: .git (hidden directories)
-<leader>C-p   # Type: telescope (git files only)
+<lea. Update lualine.lua
+In /Users/amruhashim/dotfiles/nvim/.config/nvim/after/plugin/lualine.lua around line 489:
+Replace:
+luavim.lsp.get_active_clients()
+With:
+luavim.lsp.get_clients()der>C-p   # Type: telescope (git files only)
 
 # Content searching
 <leader>ps    # Input: "function"
@@ -443,6 +448,90 @@ function  *.{js,ts}        # Find "function" in JS/TS files
 | `:qa`  | Quit all       | Close all windows        |
 | `:w`   | Write          | Save current file        |
 | `:wq`  | Write and quit | Save and close           |
+
+---
+
+## 🦋 Flutter Development
+
+### 📲 Flutter Plugin Commands (flutter-tools.nvim)
+
+**Basic Flutter Commands:**
+
+| Command             | Description                                     |
+| ------------------- | ----------------------------------------------- |
+| `:FlutterRun`       | Run the Flutter app                             |
+| `:FlutterDevices`   | List available devices                          |
+| `:FlutterEmulators` | List available emulators                        |
+| `:FlutterReload`    | Hot reload (save file to trigger automatically) |
+| `:FlutterRestart`   | Hot restart                                     |
+| `:FlutterQuit`      | Stop the running app                            |
+| `:FlutterDetach`    | Detach from running app without stopping        |
+
+**Development Commands:**
+
+| Command                   | Description                |
+| ------------------------- | -------------------------- |
+| `:FlutterOutlineToggle`   | Toggle widget outline view |
+| `:FlutterDevTools`        | Open Flutter DevTools      |
+| `:FlutterCopyProfilerUrl` | Copy profiler URL          |
+| `:FlutterLspRestart`      | Restart Dart LSP           |
+| `:FlutterSuper`           | Go to super class          |
+| `:FlutterReanalyze`       | Force reanalyze Dart code  |
+
+**Project Commands:**
+
+| Command              | Description                |
+| -------------------- | -------------------------- |
+| `:FlutterCreate`     | Create new Flutter project |
+| `:FlutterPubGet`     | Run `flutter pub get`      |
+| `:FlutterPubUpgrade` | Run `flutter pub upgrade`  |
+
+### 🔧 Flutter LSP Commands (via Dart LSP)
+
+**Code Actions (with cursor on widget):**
+
+| Keymap       | Function            | Description                         |
+| ------------ | ------------------- | ----------------------------------- |
+| `<leader>ca` | Code actions menu   | Wrap with widget, extract, etc.     |
+| `gd`         | Go to definition    | Navigate to widget/class definition |
+| `gr`         | Find references     | Find all references to widget       |
+| `K`          | Hover documentation | Show widget documentation           |
+| `<leader>rn` | Rename symbol       | Rename widget/variable              |
+
+**Common Code Actions:**
+
+- Wrap with Widget
+- Wrap with Column/Row/Container
+- Extract Widget
+- Remove this widget
+- Convert to StatefulWidget
+
+### 🐛 Flutter Debugging Commands
+
+| Command             | Description        |
+| ------------------- | ------------------ |
+| `:FlutterLogClear`  | Clear Flutter logs |
+| `:FlutterLogToggle` | Toggle log window  |
+| `<leader>ds`        | Start debugging    |
+| `<leader>db`        | Toggle breakpoint  |
+| `<leader>dc`        | Continue debugging |
+
+### 🚀 Typical Flutter Workflow
+
+1. **Open Flutter project:** `nvim .`
+2. **Select device:** `:FlutterDevices` and choose
+3. **Run app:** `:FlutterRun`
+4. **Edit code and save** - auto hot reload
+5. **For major changes:** `:FlutterRestart`
+6. **View widget tree:** `:FlutterOutlineToggle`
+7. **Stop app:** `:FlutterQuit`
+
+**💡 Flutter Development Tips:**
+
+- Map frequently used commands to shorter keybindings in your Neovim config
+- Use `<leader>ca` on any widget to see available refactoring options
+- Save files frequently to trigger hot reload automatically
+- Use `:FlutterOutlineToggle` to visualize your widget hierarchy
 
 ---
 
