@@ -559,3 +559,59 @@ cd ~/dotfiles && nvim .
 - Combine Telescope with multi-grep for powerful code searching
 - Use splits for side-by-side file comparison and editing
 - Take advantage of LSP features for intelligent code navigation
+
+---
+
+## 💾 Session Management (auto-session)
+
+### 📂 Session Commands
+
+| Command                      | Description                                     |
+| ---------------------------- | ----------------------------------------------- |
+| `:SessionSave`               | Save session based on current working directory |
+| `:SessionSave my_session`    | Save session with custom name                   |
+| `:SessionRestore`            | Restore session for current working directory   |
+| `:SessionRestore my_session` | Restore specific named session                  |
+| `:SessionDelete`             | Delete session for current working directory    |
+| `:SessionDelete my_session`  | Delete specific named session                   |
+
+### ⚙️ Session Settings
+
+| Command                    | Description                              |
+| -------------------------- | ---------------------------------------- |
+| `:SessionDisableAutoSave`  | Disable automatic session saving         |
+| `:SessionDisableAutoSave!` | Enable automatic session saving          |
+| `:SessionToggleAutoSave`   | Toggle automatic session saving on/off   |
+| `:SessionPurgeOrphaned`    | Remove sessions with missing directories |
+
+### 🔍 Session Browser
+
+| Command               | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `:SessionSearch`      | Open session picker (Telescope/vim.ui.select) |
+| `:Autosession search` | Open session picker to load a session         |
+| `:Autosession delete` | Open session picker to delete a session       |
+
+### 🔄 Session Workflow
+
+**Automatic Behavior:**
+
+- Sessions auto-save when exiting nvim (`:qa`)
+- Sessions auto-restore when opening nvim in same directory
+- Only works in project directories (not home, downloads, etc.)
+
+**Manual Workflow:**
+
+```bash
+# Working on project A
+cd ~/projects/project-a
+nvim                      # Auto-restores project-a session
+:SessionSave              # Manual save if needed
+
+# Switch to project B
+cd ~/projects/project-b
+nvim                      # Auto-restores project-b session
+
+# Browse all sessions
+:SessionSearch            # Pick any session to load
+```
