@@ -1,4 +1,4 @@
 require("remap")
-require("plugins") 
 require("set")
+require("plugins") 
 print("Neovim config loaded!")
