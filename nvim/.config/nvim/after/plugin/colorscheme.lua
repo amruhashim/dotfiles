@@ -15,12 +15,12 @@ kanagawa.setup({
     transparent = false,
     dimInactive = false,
     terminalColors = true,
-    theme = "wave", -- or "dragon" for even more retro feel
+    theme = "wave",
     colors = {
         theme = {
             all = {
                 ui = {
-                    bg_gutter = "none" -- Remove gutter background for cleaner look
+                    bg_gutter = "none"
                 }
             }
         }
@@ -28,12 +28,9 @@ kanagawa.setup({
     overrides = function(colors)
         local theme = colors.theme
         return {
-            -- Clean floating windows (minimalistic)
             NormalFloat = { bg = "none" },
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
-
-            -- Clean Telescope (if you use it)
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopePromptNormal = { bg = theme.ui.bg_p1 },
             TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },

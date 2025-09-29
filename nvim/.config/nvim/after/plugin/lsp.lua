@@ -59,7 +59,7 @@ vim.diagnostic.config({
 	virtual_text = {
 		prefix = "●", -- Could be '■', '▎', 'x'
 	},
-	update_in_insert = false,
+	update_in_insert = true,
 	float = {
 		focusable = false,
 		style = "minimal",
