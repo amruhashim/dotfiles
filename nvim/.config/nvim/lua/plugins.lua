@@ -15,7 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	-- Telescope with dependencies
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
@@ -28,18 +27,27 @@ require("lazy").setup({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
 	},
+
 	"nvim-tree/nvim-web-devicons",
+
 	"rebelot/kanagawa.nvim",
+
+	-- Treesitter: Advanced syntax highlighting and code understanding
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
+	-- Treesitter playground: View and debug treesitter syntax trees
 	"nvim-treesitter/playground",
+
 	"stevearc/conform.nvim",
+
 	"nvim-lua/plenary.nvim",
 	"theprimeagen/harpoon",
 	"mbbill/undotree",
+
 	"tpope/vim-fugitive",
+
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		dependencies = {
@@ -56,15 +64,24 @@ require("lazy").setup({
 			"rafamadriz/friendly-snippets",
 		},
 	},
+
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+
+	{
+		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		priority = 900,
+	},
+
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 	},
+
 	{
 		"nvzone/typr",
 		dependencies = "nvzone/volt",
@@ -73,7 +90,9 @@ require("lazy").setup({
 		end,
 		cmd = { "Typr", "TyprStats" },
 	},
+
 	"ggandor/leap.nvim",
+
 	{
 		"stevearc/oil.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
@@ -85,12 +104,14 @@ require("lazy").setup({
 			})
 		end,
 	},
+
 	{
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
 		end,
 	},
+
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -115,6 +136,7 @@ require("lazy").setup({
 			})
 		end,
 	},
+
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -141,7 +163,7 @@ require("lazy").setup({
 			require("nvim-ts-autotag").setup()
 		end,
 	},
-	-- Flutter/Dart support
+
 	{
 		"nvim-flutter/flutter-tools.nvim",
 		lazy = false,
@@ -149,16 +171,28 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	{
-  'rmagatti/auto-session',
-  lazy = false,
 
-  ---enables autocomplete for opts
-  ---@module "auto-session"
-  ---@type AutoSession.Config
-  opts = {
-    suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-    -- log_level = 'debug',
-  }
-},
+	{
+		"rmagatti/auto-session",
+		lazy = false,
+		---enables autocomplete for opts
+		---@module "auto-session"
+		---@type AutoSession.Config
+		opts = {
+			suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+			-- log_level = 'debug',
+		},
+	},
+
+	{
+		"stevearc/aerial.nvim",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("config.aerial")
+		end,
+	},
 })
