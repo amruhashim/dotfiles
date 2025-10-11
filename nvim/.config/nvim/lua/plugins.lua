@@ -195,4 +195,10 @@ require("lazy").setup({
 			require("config.aerial")
 		end,
 	},
+
+	{
+		"b0o/schemastore.nvim",
+		lazy = true,
+		ft = { "json", "jsonc" },
+	},
 })

@@ -7,11 +7,12 @@ require("mason-lspconfig").setup({
 		"eslint",
 		"lua_ls",
 		"rust_analyzer",
-		-- Don't add dartls here - flutter-tools handles Dart LSP
+		"jsonls",
+		"sqls",
 	},
 	handlers = {
 		lsp_zero.default_setup,
-		-- Custom setup for TypeScript with auto-imports
+
 		ts_ls = function()
 			require("lspconfig").ts_ls.setup({
 				settings = {
@@ -37,10 +38,37 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
-		-- Custom setup for lua_ls
+
 		lua_ls = function()
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
+		end,
+
+		jsonls = function()
+			require("lspconfig").jsonls.setup({
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+		end,
+
+		-- PostgreSQL
+		sqls = function()
+			require("lspconfig").sqls.setup({
+				settings = {
+					sqls = {
+						connections = {
+							{
+								driver = "postgresql",
+								dataSourceName = "host=127.0.0.1 port=5432 user=postgres password=yourpassword dbname=yourdb sslmode=disable",
+							},
+						},
+					},
+				},
+			})
 		end,
 	},
 })
@@ -55,7 +83,7 @@ vim.diagnostic.config({
 		},
 	},
 	virtual_text = {
-		prefix = "●", -- Could be '■', '▎', 'x'
+		prefix = "●",
 	},
 	update_in_insert = true,
 	float = {
@@ -81,6 +109,7 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>vws", function()
 		vim.lsp.buf.workspace_symbol()
 	end, opts)
+
 	vim.keymap.set("n", "<leader>vd", function()
 		vim.diagnostic.open_float()
 	end, opts)
@@ -90,6 +119,7 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "]d", function()
 		vim.diagnostic.goto_prev()
 	end, opts)
+
 	vim.keymap.set("n", "<leader>vca", function()
 		vim.lsp.buf.code_action()
 	end, opts)
