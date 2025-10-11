@@ -293,4 +293,14 @@ require("lazy").setup({
 			require("config.aerial")
 		end,
 	},
+
+	-- ------------------------------------------------------------------------
+	-- JSON Schema Support
+	-- ------------------------------------------------------------------------
+	-- SchemaStore: JSON schema validation for package.json, tsconfig.json, etc.
+	{
+		"b0o/schemastore.nvim",
+		lazy = true,
+		ft = { "json", "jsonc" },
+	},
 })
