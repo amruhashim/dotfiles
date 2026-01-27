@@ -10,6 +10,7 @@ require("mason-lspconfig").setup({
         "rust_analyzer",
         "jsonls",
         "postgres_lsp",
+        "clangd",
     },
     handlers = {
         lsp_zero.default_setup,
