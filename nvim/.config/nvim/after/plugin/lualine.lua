@@ -396,7 +396,7 @@ ins_right({
 			tsserver = "ts",
 			rust_analyzer = "rs",
 			lua_ls = "lua",
-			clangd = "c++",
+			clangd = "c",
 			bashls = "sh",
 			jsonls = "json",
 			html = "html",
