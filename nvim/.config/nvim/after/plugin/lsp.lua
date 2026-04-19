@@ -11,6 +11,8 @@ require("mason-lspconfig").setup({
         "jsonls",
         "postgres_lsp",
         "clangd",
+        "pyright",
+        "ruff",
     },
     handlers = {
         lsp_zero.default_setup,
@@ -67,6 +69,27 @@ require("mason-lspconfig").setup({
                 -- No complex connection settings needed
             })
         end,
+
+        -- Python type checking (let ruff handle linting/imports)
+        pyright = function()
+            require("lspconfig").pyright.setup({
+                settings = {
+                    pyright = {
+                        disableOrganizeImports = true,
+                    },
+                    python = {
+                        analysis = {
+                            ignore = { "*" },
+                        },
+                    },
+                },
+            })
+        end,
+
+        -- Python linting + formatting
+        ruff = function()
+            require("lspconfig").ruff.setup({})
+        end,
     },
 })
 
@@ -103,6 +126,11 @@ lsp_zero.on_attach(function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
         client.server_capabilities.documentOnTypeFormattingProvider = false
+    end
+
+    -- Let pyright handle hover docs instead of ruff
+    if client.name == "ruff" then
+        client.server_capabilities.hoverProvider = false
     end
 
     local opts = { buffer = bufnr, remap = false }
