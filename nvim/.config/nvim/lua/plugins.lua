@@ -159,7 +159,8 @@ require("lazy").setup({
 	-- Motion/Navigation
 	-- ------------------------------------------------------------------------
 	-- Leap: Enhanced motion plugin for quick jumping
-	"ggandor/leap.nvim",
+	-- Moved off GitHub; upstream is Codeberg now.
+	{ url = "https://codeberg.org/andyg/leap.nvim" },
 
 	-- ------------------------------------------------------------------------
 	-- File Manager
@@ -284,6 +285,9 @@ require("lazy").setup({
 	-- Aerial: Code outline window for navigation
 	{
 		"stevearc/aerial.nvim",
+		-- master now requires Neovim 0.12+. Pin to the 0.11 maintenance branch
+		-- until we upgrade; drop this line after moving to 0.12.
+		branch = "nvim-0.11",
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
