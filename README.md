@@ -15,7 +15,13 @@ cd ~/dotfiles
 # Stow configurations
 stow kitty
 stow nvim
+stow wezterm
 ```
+
+> **Windows:** WezTerm reads `~/.config/wezterm/wezterm.lua`. If WezTerm runs as a
+> Windows app while the dotfiles live inside WSL, the config must sit on the
+> Windows side — clone the repo to `%USERPROFILE%\dotfiles` and symlink it with
+> `mklink` (stow isn't available there).
 
 ## 📦 Package Management
 
@@ -541,7 +547,7 @@ function  *.{js,ts}        # Find "function" in JS/TS files
 
 ```bash
 # Update configs from remote and re-stow
-cd ~/dotfiles && git pull && stow kitty && stow nvim
+cd ~/dotfiles && git pull && stow kitty && stow nvim && stow wezterm
 ```
 
 ### ⚡ Quick Access
