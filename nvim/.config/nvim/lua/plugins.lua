@@ -307,4 +307,31 @@ require("lazy").setup({
 		lazy = true,
 		ft = { "json", "jsonc" },
 	},
+
+	-- ------------------------------------------------------------------------
+	-- Cursor Animation
+	-- ------------------------------------------------------------------------
+	-- Smear cursor: animated cursor trail, replacing kitty's `cursor_trail`
+	{
+		"sphamba/smear-cursor.nvim",
+		event = "VeryLazy",
+		opts = {
+			cursor_color = "#C8C093", -- kanagawa wave oldWhite
+
+			-- Lower = longer trail. Insert mode stays stiffer so it doesn't
+			-- lag behind fast typing.
+			stiffness = 0.8,
+			trailing_stiffness = 0.5,
+			stiffness_insert_mode = 0.6,
+			trailing_stiffness_insert_mode = 0.6,
+			distance_stop_animating = 0.5,
+
+			-- Needs a font with legacy computing symbols; JetBrains Mono and
+			-- Victor Mono don't have them, so use the block-character renderer.
+			legacy_computing_symbols_support = false,
+
+			smear_between_buffers = true,
+			smear_between_neighbor_lines = true,
+		},
+	},
 })
