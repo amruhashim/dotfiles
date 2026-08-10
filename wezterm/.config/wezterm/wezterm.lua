@@ -21,6 +21,7 @@ local nav = is_mac and 'SUPER|ALT' or 'CTRL|ALT'
 if not is_mac then
   local home = os.getenv('USERPROFILE') or ''
   config.font_dirs = { home .. '/AppData/Local/Microsoft/Windows/Fonts' }
+  config.default_prog = { 'pwsh.exe', '-NoLogo' }
 end
 
 config.font = wezterm.font_with_fallback {
