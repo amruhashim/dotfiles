@@ -39,7 +39,7 @@ require("lazy").setup({
 	-- FZF native extension for telescope (faster sorting)
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 
 	-- ------------------------------------------------------------------------
@@ -57,13 +57,13 @@ require("lazy").setup({
 	-- ------------------------------------------------------------------------
 	-- Syntax Highlighting & Parsing
 	-- ------------------------------------------------------------------------
-	-- Treesitter: Advanced syntax highlighting and code understanding
+	-- Treesitter: Advanced syntax highlighting and code understanding.
+	-- Pinned to `master` because the `main` branch dropped `nvim-treesitter.configs`.
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		build = ":TSUpdate",
 	},
-	-- Treesitter playground: View and debug treesitter syntax trees
-	"nvim-treesitter/playground",
 
 	-- ------------------------------------------------------------------------
 	-- Code Formatting

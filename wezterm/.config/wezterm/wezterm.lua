@@ -6,7 +6,6 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 local is_mac = wezterm.target_triple:find 'darwin' ~= nil
-local is_win = wezterm.target_triple:find 'windows' ~= nil
 
 -- cmd on macOS has no Windows equivalent, so each modifier group gets remapped.
 --   mod  -> kitty's cmd+…        (tabs, copy/paste, splits, font size)
@@ -16,17 +15,13 @@ local mod = is_mac and 'SUPER' or 'CTRL|SHIFT'
 local mod2 = is_mac and 'SUPER|SHIFT' or 'CTRL|ALT'
 local nav = is_mac and 'SUPER|ALT' or 'CTRL|ALT'
 
---: Shell {{{
-
--- On Windows, drop straight into WSL so the shell/nvim/tooling side is
--- identical to macOS. Add `-d <Distro>` if the default distro isn't the one.
-if is_win then
-  config.default_prog = { 'wsl.exe', '--cd', '~' }
-end
-
---: }}}
-
 --: Fonts {{{
+
+-- Per-user fonts on Windows aren't reliably enumerated by DirectWrite; scan the dir directly.
+if not is_mac then
+  local home = os.getenv('USERPROFILE') or ''
+  config.font_dirs = { home .. '/AppData/Local/Microsoft/Windows/Fonts' }
+end
 
 config.font = wezterm.font_with_fallback {
   { family = 'JetBrains Mono', weight = 'Regular' },
@@ -57,7 +52,7 @@ config.font_rules = {
   },
 }
 
-config.font_size = 16.0
+config.font_size = is_mac and 16.0 or 13.5
 
 --: }}}
 
