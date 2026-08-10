@@ -25,20 +25,19 @@ require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 
 	"nvim-tree/nvim-web-devicons",
 
 	"rebelot/kanagawa.nvim",
 
-	-- Treesitter: Advanced syntax highlighting and code understanding
+	-- Pinned to `master` because the `main` branch dropped `nvim-treesitter.configs`.
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		build = ":TSUpdate",
 	},
-	-- Treesitter playground: View and debug treesitter syntax trees
-	"nvim-treesitter/playground",
 
 	"stevearc/conform.nvim",
 
