@@ -6,6 +6,7 @@ plugin/packer_compiled.lua
 
 # Neovim cache and state
 .netrwhist
+nvim/.nvimlog
 *.tmp
 *.swp
 *.swo

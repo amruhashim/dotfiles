@@ -387,13 +387,13 @@ ins_right({
     function()
         local msg = "No Active Lsp"
         local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-        local clients = vim.lsp.get_active_clients()
+        local clients = vim.lsp.get_clients()
         if next(clients) == nil then
             return msg
         end
         local lsp_short_names = {
             pyright = "py",
-            tsserver = "ts",
+            ts_ls = "ts",
             rust_analyzer = "rs",
             lua_ls = "lua",
             clangd = "c",
